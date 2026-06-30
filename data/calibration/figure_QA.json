@@ -1,0 +1,32 @@
+{
+  "core_conclusion": "Injected effects are recovered near their target values across three empirical residual backgrounds, while the probability of excluding zero depends on residual noise.",
+  "archetype": "quantitative grid",
+  "backend": "python/matplotlib",
+  "source_data": "cmig_polished_output\\CMIG_residual_background_calibration_source_data.csv",
+  "exports": [
+    "cmig_polished_output\\CMIG_Figure_residual_background_calibration.svg",
+    "cmig_polished_output\\CMIG_Figure_residual_background_calibration.pdf",
+    "cmig_polished_output\\CMIG_Figure_residual_background_calibration.png",
+    "cmig_polished_output\\CMIG_Figure_residual_background_calibration.tiff",
+    "cmig_polished_output\\CMIG_Table_residual_background_calibration.csv",
+    "cmig_polished_output\\CMIG_Table_residual_background_calibration.md",
+    "cmig_polished_output\\CMIG_Table_residual_background_calibration.tex",
+    "cmig_polished_output\\CMIG_Table_residual_background_calibration.png",
+    "cmig_polished_output\\CMIG_Table_residual_background_calibration_main_text.csv",
+    "cmig_polished_output\\CMIG_Table_residual_background_calibration_main_text.md",
+    "cmig_polished_output\\CMIG_Table_residual_background_calibration_main_text.tex",
+    "cmig_polished_output\\CMIG_Table_residual_background_calibration_main_text.png"
+  ],
+  "style_checks": {
+    "svg_text_editable": true,
+    "pdf_fonttype": 42,
+    "dpi_png_tiff": 600,
+    "single_backend_used": true,
+    "source_data_traceable": true
+  },
+  "manuscript_checks_needed": [
+    "Confirm whether median_ci_low/high are 95% bootstrap confidence limits.",
+    "Confirm the number of bootstrap/injection runs represented by detection_rate_ci_excludes_zero.",
+    "Confirm whether residual backgrounds should be anonymized or renamed in final supplementary material."
+  ]
+}

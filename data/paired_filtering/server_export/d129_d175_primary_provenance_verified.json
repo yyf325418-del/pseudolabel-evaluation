@@ -1,0 +1,31 @@
+{
+  "status": "package verification of final server archive",
+  "verification_date": "2026-06-30",
+  "analysis_snapshot": "final Fold 3 and Fold 4 D175 outputs",
+  "input": "data/paired_filtering/server_export/d129_d175_case_fold_eval_long.csv",
+  "input_sha256": "a3437c8239b5cea4e7bce73e7680fdbf6648e8283b6b2f7ddb4c692fee882aa6",
+  "analysis_script": "scripts/posthoc/paired_two_way_case_fold_bootstrap.py",
+  "analysis_script_sha256": "299175dfaa9eee9942ac35a6db95464c97a6c2f2d2797ac0ceb66d61e2043549",
+  "models": [
+    "D129",
+    "D175"
+  ],
+  "folds": 5,
+  "cases": 40,
+  "paired_observations": 200,
+  "difference_direction": "D175 minus D129",
+  "metrics": [
+    "dice",
+    "id_rate"
+  ],
+  "primary_uncertainty_method": "two-way case-fold percentile bootstrap",
+  "bootstrap_repetitions": 100000,
+  "bootstrap_seed": 20260629,
+  "verification_environment": {
+    "python": "3.10.19",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3"
+  },
+  "verification_result": "passed; four CSV outputs were row-for-row and numerically equivalent to the imported server outputs within 1e-12"
+}

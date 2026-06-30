@@ -1,0 +1,10 @@
+dataset_key,dataset_name,pool_cases,folds,ground_truth_cases,pseudo_label_cases
+D119,Dataset119_VerSe19,80,5,80,0
+D128,Dataset128_VerSe19Labeled08_seed42,8,5,8,0
+D129,Dataset129_VerSe19Pseudo70_seed42,78,5,8,70
+D130,Dataset130_VerSe19Labeled16_seed42,16,5,16,0
+D132,Dataset132_VerSe19Labeled04_seed42,4,4,4,0
+D134,Dataset134_VerSe19Pseudo63Conf080_seed42,71,5,8,63
+D161,Dataset161_VerSe19Labeled16Pseudo70_seed42,78,5,16,62
+D162,Dataset162_VerSe19Labeled04Pseudo70_seed42,74,5,4,70
+D175,Dataset175_VerSe19Pseudo70TrainConfFilterPaired129_seed42,78,5,8,70

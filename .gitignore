@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+*.nii
+*.nii.gz
+*.dcm
+*.pth
+*.pt
+*.ckpt
+repository_outputs/
+

@@ -1,0 +1,4 @@
+residual_background,observed_sd_diff,fp_delta_0,detect_delta_0_001,detect_delta_0_003,detect_delta_0_005,detect_delta_0_010
+D175-D129 filtering,0.008694,0.03,0.15,0.776667,0.956667,1.0
+D162-D119 second residual,0.016465,0.033333,0.086667,0.273333,0.606667,0.98
+D129-D119 third residual,0.016767,0.013333,0.056667,0.363333,0.776667,1.0

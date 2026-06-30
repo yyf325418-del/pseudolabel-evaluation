@@ -1,0 +1,106 @@
+{
+  "n_cases": 70,
+  "threshold": 0.8,
+  "confidence": {
+    "mean": 0.9440107,
+    "std": 0.07577180889026537,
+    "min": 0.709571,
+    "median": 0.9804740000000001,
+    "max": 0.99999
+  },
+  "binary_dice": {
+    "mean": 0.9601551255320538,
+    "std": 0.02120552783375695,
+    "min": 0.8618361258824401,
+    "q1": 0.9561221436172928,
+    "median": 0.965061999928906,
+    "q3": 0.9741198643486391,
+    "max": 0.9822023567655425
+  },
+  "macro_label_dice": {
+    "mean": 0.8412637193255014,
+    "std": 0.0970547237068801,
+    "min": 0.4875056263344503,
+    "median": 0.8426921530031126,
+    "max": 0.9778074165838995
+  },
+  "correlation_binary_dice": {
+    "pearson_r": -0.13516073352108612,
+    "pearson_p": 0.26459220094020885,
+    "pearson_bootstrap_95ci": [
+      -0.3144616014738967,
+      0.0428886350796341
+    ],
+    "spearman_rho": -0.06379200238195622,
+    "spearman_p": 0.5998285966970249,
+    "spearman_bootstrap_95ci": [
+      -0.33101663537703546,
+      0.21261342018121093
+    ]
+  },
+  "correlation_macro_label_dice": {
+    "pearson_r": 0.16245217542440024,
+    "pearson_p": 0.1790634415397722,
+    "spearman_rho": 0.386391272792957,
+    "spearman_p": 0.0009535221185115081
+  },
+  "threshold_groups": {
+    "low_n": 7,
+    "kept_n": 63,
+    "low_binary_dice_mean": 0.9738619035317205,
+    "low_binary_dice_median": 0.974475447069145,
+    "kept_binary_dice_mean": 0.9586321501987578,
+    "kept_binary_dice_median": 0.964568515596553,
+    "mean_difference_low_minus_kept": 0.015229753332962725,
+    "mann_whitney_u": 360.0,
+    "mann_whitney_p": 0.004624810573249326
+  },
+  "score_reproduction": {
+    "max_abs_difference": 0.10769229059403085,
+    "mean_abs_difference": 0.0025468979040160784
+  },
+  "low_confidence_cases": [
+    {
+      "case_id": "sub-verse146",
+      "confidence": 0.709571,
+      "binary_dice": 0.9664191203553586,
+      "macro_label_dice": 0.7234780235654675
+    },
+    {
+      "case_id": "sub-verse036",
+      "confidence": 0.735,
+      "binary_dice": 0.9656159278552163,
+      "macro_label_dice": 0.9628657183528041
+    },
+    {
+      "case_id": "sub-verse405_split-verse259",
+      "confidence": 0.740972,
+      "binary_dice": 0.9822023567655425,
+      "macro_label_dice": 0.8181485360779556
+    },
+    {
+      "case_id": "sub-verse005",
+      "confidence": 0.752083,
+      "binary_dice": 0.9743825937082251,
+      "macro_label_dice": 0.8118625674088902
+    },
+    {
+      "case_id": "sub-verse065",
+      "confidence": 0.773683,
+      "binary_dice": 0.9757582591047469,
+      "macro_label_dice": 0.7796751085304704
+    },
+    {
+      "case_id": "sub-verse139",
+      "confidence": 0.79375,
+      "binary_dice": 0.978179619863808,
+      "macro_label_dice": 0.9778074165838995
+    },
+    {
+      "case_id": "sub-verse031",
+      "confidence": 0.79375,
+      "binary_dice": 0.974475447069145,
+      "macro_label_dice": 0.973293843884494
+    }
+  ]
+}

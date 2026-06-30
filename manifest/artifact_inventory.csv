@@ -1,0 +1,16 @@
+artifact,manuscript_role,release_status,notes
+data/paired_filtering/all_case_fold_differences_sanitized.csv,Primary paired filtering case-fold results,included,Server and source-file paths removed
+data/pseudo_quality/d129_pseudo_quality_audit.csv,Pseudo-label confidence/quality audit,included,70 case-level rows
+data/calibration/residual_background_calibration_full.csv,Injected-effect calibration,included,Three backgrounds by six delta values
+scripts/build_residual_background_calibration_figure.py,Calibration figure generation,included,Self-contained source data in script
+scripts/build_paired_filtering_anatomy_figure.py,Qualitative figure generation,included,Requires non-redistributed licensed images and predictions
+manifest/study/case_fold_role_manifest.csv,Dataset provenance,included,Complete case-fold-role export from final server snapshot
+manifest/study/pseudo_generation_72_to_70_manifest.csv,Pseudo-label generation provenance,included,Accounts for candidate72 to generated70 transition
+manifest/study/fixed_verse_external40_manifest.csv,External evaluation provenance,included,Fixed 40-case test manifest with portable paths
+scripts/posthoc/paired_two_way_case_fold_bootstrap.py,Primary statistical reproduction,included,100000 repetitions and seed recorded in frozen outputs
+data/paired_filtering/server_export/d129_d175_primary_provenance_verified.json,Primary statistical verification provenance,included,Binds archived input and script hashes; documents successful numerical verification
+scripts/original/score_pseudo_case_confidence.py,Historical confidence score generation,included,Original script classification supported by provenance record
+scripts/posthoc/build_case_role_manifest.py,Manifest reconstruction,included,Generates portable case-fold-role manifests
+downstream_pseudo_quality_audit_script,Confidence-quality association reproduction,missing,Frozen case-level table and summary included but audit script not found
+raw_CT_and_source_annotations,Third-party inputs,excluded,Obtain from official VerSe and TotalSegmentator repositories
+model_checkpoints_and_prediction_masks,Model artifacts,decision_required,Deposit or document access route and immutable hashes

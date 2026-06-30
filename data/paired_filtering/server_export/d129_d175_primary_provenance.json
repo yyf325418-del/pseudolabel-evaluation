@@ -1,0 +1,22 @@
+{
+  "status": "repository reconstruction from frozen outputs",
+  "original_interactive_command_preserved": false,
+  "input": "<PROJECT_ROOT>/nnunet_predictions/d129_d175_case_fold_eval_long.csv",
+  "input_sha256": "52015dc49b04cdc64e3e966f3d35cd77c2ae294a1e97fbda3eb5b2619794df18",
+  "models": [
+    "D129",
+    "D175"
+  ],
+  "folds": 5,
+  "cases": 40,
+  "paired_observations": 200,
+  "difference_direction": "D175 minus D129",
+  "metrics": [
+    "dice",
+    "id_rate"
+  ],
+  "primary_uncertainty_method": "two-way case-fold percentile bootstrap",
+  "bootstrap_repetitions": 100000,
+  "bootstrap_seed": 20260629,
+  "note": "Fold-specific training-pool intervention status is reported separately in the split manifest."
+}

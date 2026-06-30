@@ -1,0 +1,5 @@
+role,fold,case_id,dice_D129,dice_D175,diff_dice,id_rate_D129,id_rate_D175,diff_id_rate
+case_regular,1,sub-verse153,0.973945,0.973939,-5.999999999950489e-06,1.0,1.0,0.0
+case_D175_worse,2,sub-verse030,0.956598,0.918352,-0.038246,1.0,1.0,0.0
+case_D175_slightly_better,2,sub-verse116,0.674701,0.674719,1.799999999996249e-05,1.0,1.0,0.0
+case_ID_difference,0,sub-verse022,0.872696,0.876392,0.0036959999999999216,0.6,1.0,0.4

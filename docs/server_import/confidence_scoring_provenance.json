@@ -1,0 +1,15 @@
+{
+  "classification": "historical scoring-generation script",
+  "source_script": "score_pseudo_case_confidence.py",
+  "source_script_sha256": "d365747bfc9fa293c72d0a2db7b92ab4c6aa17a8a6af028951002e6140d493c6",
+  "frozen_output": "confidence_scores.csv",
+  "frozen_output_sha256": "b1db83840df6d2732cd70a12f5862b0e15a9123287d64b5376f47d5f79a1371a",
+  "source_script_mtime": "2026-04-07T19:11:29.680000",
+  "frozen_output_mtime": "2026-04-07T19:21:51.700000",
+  "script_precedes_output_seconds": 622.02,
+  "frozen_rows": 70,
+  "schema_match": true,
+  "repository_csv": "derived_statistics/confidence/confidence_scores_path_sanitized.csv",
+  "path_sanitization": "Absolute mask paths were replaced by pseudo_masks/<filename> in the repository copy. Numerical fields were not modified.",
+  "related_posthoc_script": "audit_d129_pseudo_quality.py is a later quality-audit/recomputation script and is not classified as the original score generator."
+}
