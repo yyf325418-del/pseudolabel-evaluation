@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 import sys
+from tempfile import TemporaryDirectory
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,6 +16,16 @@ TITLE = (
 
 
 class RepositoryReleaseTests(unittest.TestCase):
+    def test_text_manifest_hash_is_line_ending_independent(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            lf = root / "lf.csv"
+            crlf = root / "crlf.csv"
+            lf.write_bytes(b"a,b\n1,2\n")
+            crlf.write_bytes(b"a,b\r\n1,2\r\n")
+            self.assertEqual(verify_package.canonical_payload(lf), verify_package.canonical_payload(crlf))
+            self.assertEqual(verify_package.sha256(lf), verify_package.sha256(crlf))
+
     def test_required_release_files_exist(self) -> None:
         for relative in ("LICENSE", "LICENSE-CODE", "LICENSE-DATA", "CITATION.cff", ".zenodo.json"):
             self.assertTrue((ROOT / relative).is_file(), f"missing {relative}")

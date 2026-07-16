@@ -16,13 +16,19 @@ EXPECTED_PRIMARY = {
     "foreground_dice": (-0.0014706567567567468, -0.0038258230405405227, 0.00041474628378378447, 0.20034979965020036),
     "identification_rate": (-0.005542535135135135, -0.019014789594594593, 0.005811671486486485, 0.43985156014843985),
 }
+TEXT_SUFFIXES = {".cff", ".csv", ".json", ".md", ".py", ".txt", ".yaml", ".yml"}
+
+
+def canonical_payload(path: Path) -> bytes:
+    """Return platform-stable bytes for manifests while preserving binaries."""
+    payload = path.read_bytes()
+    is_text = path.suffix.lower() in TEXT_SUFFIXES or path.name.startswith("LICENSE")
+    return payload.replace(b"\r\n", b"\n") if is_text else payload
 
 
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
+    digest.update(canonical_payload(path))
     return digest.hexdigest()
 
 
@@ -43,7 +49,7 @@ def write_manifest() -> None:
         writer = csv.writer(handle)
         writer.writerow(["relative_path", "size_bytes", "sha256"])
         for path in package_files():
-            writer.writerow([path.relative_to(ROOT).as_posix(), path.stat().st_size, sha256(path)])
+            writer.writerow([path.relative_to(ROOT).as_posix(), len(canonical_payload(path)), sha256(path)])
     print(f"Wrote {MANIFEST.relative_to(ROOT)}")
 
 
@@ -121,7 +127,7 @@ def main() -> None:
         path = ROOT / row["relative_path"]
         if not path.is_file():
             continue
-        if path.stat().st_size != int(row["size_bytes"]):
+        if len(canonical_payload(path)) != int(row["size_bytes"]):
             failures.append(f"size mismatch: {row['relative_path']}")
         if sha256(path) != row["sha256"]:
             failures.append(f"hash mismatch: {row['relative_path']}")
