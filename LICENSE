@@ -1,0 +1,13 @@
+DUAL-LICENSING NOTICE
+
+Original software in this repository, including Python scripts and tests, is
+licensed under the MIT License in LICENSE-CODE.
+
+Author-generated tabular outputs, path-free manifests, figure source data, and
+documentation are licensed under the Creative Commons Attribution 4.0
+International License described in LICENSE-DATA.
+
+These licences do not apply to third-party CT data, annotations, DICOM files,
+model checkpoints, prediction masks, or other third-party materials. Those
+materials are not redistributed here and remain subject to their original
+terms. See THIRD_PARTY_DATA_LICENSES.md.

@@ -1,0 +1,27 @@
+{
+  "title": "Provenance-Audited Evaluation of Morphology-Based Pseudo-Label Filtering in CT Vertebra Segmentation: A Split-Controlled Case Study",
+  "upload_type": "software",
+  "description": "Reproducibility package for a split-controlled, subject-equal evaluation of morphology-based pseudo-label filtering in CT vertebra segmentation. The release contains path-free inputs, statistical scripts and outputs, provenance manifests, calibration source data, and figure source data; it does not redistribute CT volumes, annotations, checkpoints, or prediction masks.",
+  "creators": [
+    {"name": "Wang, Mingwei", "affiliation": "Shaanxi University of Science and Technology"},
+    {"name": "Yan, Yifan", "affiliation": "Shaanxi University of Science and Technology"},
+    {"name": "Wang, Weizhuo", "affiliation": "The Second Affiliated Hospital, Xi'an Jiaotong University"},
+    {"name": "Zhang, Yixuan", "affiliation": "The Second Affiliated Hospital, Xi'an Jiaotong University"}
+  ],
+  "version": "1.0.0",
+  "publication_date": "2026-07-16",
+  "access_right": "open",
+  "license": "other-open",
+  "keywords": [
+    "pseudo-labels",
+    "vertebra segmentation",
+    "subject-level inference",
+    "reproducibility",
+    "medical imaging"
+  ],
+  "related_identifiers": [
+    {"identifier": "https://doi.org/10.17605/OSF.IO/NQJYW", "relation": "isDerivedFrom", "scheme": "doi"},
+    {"identifier": "https://doi.org/10.5281/zenodo.10047292", "relation": "isDerivedFrom", "scheme": "doi"}
+  ],
+  "notes": "Original code is MIT licensed. Author-generated tables, manifests, figure source data, and documentation are CC BY 4.0. Third-party datasets and materials retain their original terms."
+}

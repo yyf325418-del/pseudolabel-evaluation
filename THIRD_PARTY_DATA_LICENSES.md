@@ -11,10 +11,12 @@ record.
 
 ## Release boundary
 
-This draft package does not redistribute raw source CT volumes or source
+This release does not redistribute raw source CT volumes or source
 annotations. It contains derived metrics, case identifiers, aggregate tables,
-rendered manuscript figures, and original project scripts. Source-dataset
-attribution and share-alike obligations remain applicable where relevant.
+rendered manuscript figures, and original project scripts. The MIT and CC BY
+4.0 grants in this repository apply only to original project materials;
+source-dataset attribution and share-alike obligations remain applicable where
+relevant.
 
 This file is a provenance record, not legal advice. The corresponding author
 must confirm the final public release against the exact dataset versions used,

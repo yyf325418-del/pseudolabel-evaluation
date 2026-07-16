@@ -1,0 +1,11 @@
+{
+  "comparison": "D175 minus D129",
+  "input": "data/internal37/subject_fold_metrics.csv",
+  "aggregation": "folds within scan; repeated scans within subject; subjects equally weighted",
+  "cases": 40,
+  "subjects": 37,
+  "folds": 5,
+  "bootstrap_repetitions": 100000,
+  "permutation_repetitions": 1000000,
+  "base_seed": 20260715
+}

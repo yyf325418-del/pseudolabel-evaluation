@@ -1,0 +1,23 @@
+{
+  "background": "D175 minus D129 foreground Dice",
+  "input": "data/internal37/subject_fold_metrics.csv",
+  "matrix_shape": [
+    37,
+    5
+  ],
+  "centering": "grand mean subtracted before effect injection",
+  "deltas": [
+    0.0,
+    0.001,
+    0.003,
+    0.005,
+    0.01,
+    0.02
+  ],
+  "simulations_per_delta": 300,
+  "bootstrap_repetitions_per_simulation": 2000,
+  "resampling": "subjects and folds independently sampled with replacement at outer and bootstrap levels",
+  "detection": "percentile 95% bootstrap interval excludes zero",
+  "seed": 20260716,
+  "scope": "design-specific calibration; not an equivalence test or universal power analysis"
+}

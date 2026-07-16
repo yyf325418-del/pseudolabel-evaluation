@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software or its derived audit outputs, please cite this repository and the associated manuscript."
+title: "Provenance-Audited Evaluation of Morphology-Based Pseudo-Label Filtering in CT Vertebra Segmentation: A Split-Controlled Case Study"
+type: software
+authors:
+  - family-names: Wang
+    given-names: Mingwei
+    affiliation: "Shaanxi University of Science and Technology"
+  - family-names: Yan
+    given-names: Yifan
+    affiliation: "Shaanxi University of Science and Technology"
+  - family-names: Wang
+    given-names: Weizhuo
+    affiliation: "The Second Affiliated Hospital, Xi'an Jiaotong University"
+  - family-names: Zhang
+    given-names: Yixuan
+    affiliation: "The Second Affiliated Hospital, Xi'an Jiaotong University"
+repository-code: "https://github.com/yyf325418-del/pseudolabel-evaluation"
+url: "https://github.com/yyf325418-del/pseudolabel-evaluation"
+version: 1.0.0
+date-released: 2026-07-16
+license: MIT
+keywords:
+  - pseudo-labels
+  - vertebra segmentation
+  - reproducibility
+  - subject-level inference
+  - medical imaging

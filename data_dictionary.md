@@ -1,74 +1,79 @@
 # Data dictionary
 
-## `data/paired_filtering/all_case_fold_differences_sanitized.csv`
+## Current primary analysis
 
-One row per evaluation case and fold (40 unique cases across five folds; 200
-rows). `D129` is the unfiltered pseudo-label training condition and `D175` is
-the train-only confidence-filtered condition. Difference columns are D175 minus
-D129. Dice is binary foreground Dice; identification rate is the fraction of
-reference vertebral labels identified under the study definition. Filesystem
-paths present in the internal export were removed.
+### `data/internal37/subject_fold_metrics.csv`
 
-## `data/paired_filtering/selected_cases_summary_sanitized.csv`
+One row per subject, fold, endpoint, and model after repeated scans have been
+averaged within subject for that fold. `cases_aggregated` records whether a
+subject contributed one or two scans. The table contains 37 subjects and five
+folds. Current primary inference uses foreground Dice and identification rate.
 
-Four cases displayed in the qualitative figure. `role` records the selection
-purpose, and metric/difference columns use the same definitions as the complete
-case-fold table. The internal `case_dir` field was removed.
+### `data/internal37/outputs/subject_level_effects.csv`
 
-## `provenance/qualitative_selected_cases_provenance_sanitized.csv`
+One row per subject and primary endpoint. `fold0`-`fold4` are paired D175-minus-
+D129 effects; `mean_difference` is the five-fold subject effect. Subjects, not
+scans, are the independent inferential units.
 
-Path-free provenance for the four qualitative cases: case role, identifier,
-fold, comparison, checkpoint basename, TTA status, prediction-set directory
-names, Dice, and identification-rate values. Raw CT, mask, centroid, and server
-paths are omitted.
+### `data/internal37/outputs/primary_statistics.csv`
 
-## `data/calibration/residual_background_calibration_full.csv`
+Two primary rows. The arithmetic mean gives all 37 subjects equal weight.
+Confidence intervals resample subjects; p values use paired sign flips of the
+mean. Wilcoxon p values are secondary rank-based summaries.
 
-Eighteen rows: three empirical residual backgrounds by six injected effect
-sizes (`delta`). `observed_mean_diff` and `observed_sd_diff` describe each
-background. `mean_estimate` and the median confidence limits summarize the
-simulation output. `detection_rate_ci_excludes_zero` is the fraction of
-simulation runs whose interval excluded zero. The plotted x-axis is categorical.
+## Design-specific calibration
 
-## `data/pseudo_quality/d129_pseudo_quality_audit.csv`
+### `data/calibration/subject_fold_calibration_runs.csv`
 
-One row per pseudo-labeled training case (70 rows). Columns include morphology-
-based confidence components, historical and recomputed scores, binary Dice,
-macro label Dice, label counts, and the indicator `kept_at_0p80`. These quality
-metrics are distinct from the historical D134/D129 identification-rate result.
+One row for each of 1,800 pseudo-experiments: six injected effects multiplied
+by 300 runs. Each row records the experiment mean, percentile interval,
+detection indicator, sample dimensions, bootstrap repetitions, and seed.
 
-## Other tables
+### `data/calibration/subject_fold_calibration_summary.csv`
 
-- `data/literature/literature_positioning_table_source.csv`: literature values,
-  metric definitions, and comparability notes used for positioning only.
-- `data/supplementary/`: source tables corresponding to Supplementary Tables
-  S2 and S4-S8.
-- `data/calibration/residual_background_calibration_main_text.csv`: compact
-  three-row main-text summary.
-- `data/calibration/figure_QA.json`: automated checks produced with the final
-  calibration figure.
+Six rows summarizing mean recovered effect, median confidence limits, and the
+fraction of runs whose 95% interval excluded zero. The only residual background
+is the primary D175-minus-D129 foreground-Dice matrix.
 
-## Imported server supplement
+## External validation and mechanism endpoints
 
-- `data/paired_filtering/server_export/d129_d175_case_fold_eval_long.csv`:
-  model-long input with 400 rows (two models, five folds, 40 cases).
-- `data/paired_filtering/server_export/d129_d175_primary_paired_long.csv`:
-  paired 200-row D129/D175 table used by the primary statistical script.
-- `data/paired_filtering/server_export/d129_d175_primary_statistics.csv`:
-  fold-level, case-averaged, and two-way case-fold bootstrap summaries for Dice
-  and identification rate.
-- `data/paired_filtering/server_export/d129_d175_primary_provenance_verified.json`:
-  package-side verification provenance binding the archived input checksum,
-  imported script checksum, compatible environment, and independent numerical
-  verification.
-- `data/pseudo_quality/server_export/confidence_scores_path_sanitized.csv`:
-  frozen 70-case historical confidence output; only absolute mask paths were
-  replaced with portable `pseudo_masks/<filename>` paths.
-- `manifest/study/case_fold_role_manifest.csv`: 2,431 case-fold-role rows across
-  the recorded datasets and folds.
-- `manifest/study/pseudo_generation_72_to_70_manifest.csv`: candidate/input/
-  output accounting for the 72-to-70 pseudo-label transition.
-- `manifest/study/fixed_verse_external40_manifest.csv`: the fixed 40-case
-  external evaluation set with portable project-root placeholders.
+- `data/external42/external42_mean_estimand_statistics.csv`: paired results for
+  all 42 eligible TotalSegmentator subjects under the primary ROI.
+- `data/external42/external42_model_summary.csv`: five-fold ensemble summaries
+  for D119, D129, D162, and D175.
+- `data/external42/external42_penalty_sensitivity.csv`: paired penalized surface
+  distances under alternative missing-label penalties.
+- `data/external42/external42_penalty_break_even.csv`: penalty values at which
+  paired penalized-distance means change sign.
+- `data/external42/external42_roi_sensitivity.csv`: tight and loose ROI paired
+  analyses.
+- `data/mechanism/mechanism_endpoint_statistics.csv`: endpoint-family results,
+  multiplicity adjustments, and favorable directions.
+- `data/provenance/checkpoint_provenance_manifest.csv`: model, fold, checkpoint,
+  training, validation, pseudo-generation, and evaluation provenance.
 
-These files contain the final Fold 3/4 results used by the manuscript.
+## Other retained data
+
+- `data/pseudo_quality/`: path-sanitized pseudo-label quality audit.
+- `data/literature/`: literature-positioning source values.
+- `data/supplementary/`: current historical-context statistics.
+- `data/legacy_case_level/`: superseded scan/fold analyses and three-background
+  calibration artifacts retained only to document the earlier estimand.
+- `manifest/study/`: historical dataset-role manifests. Files explicitly named
+  `external40` describe the earlier 40-case audit and are not the current
+  complete 42-subject external validation.
+
+## Sign and unit conventions
+
+All paired differences are D175 minus D129. Positive values favor D175 for
+overlap, identification, completeness, and detection endpoints. Negative
+values favor D175 for distances and missing-label counts. Distance units are
+millimetres. Dice and rate endpoints are proportions unless a table explicitly
+scales them to percentage points.
+
+## Redistribution boundary
+
+No raw CT volumes, annotations, prediction masks, DICOM files, or checkpoints
+are included. Case identifiers and path-free derived outputs are retained so
+that data pairing and aggregation can be audited without redistributing the
+third-party image data.
