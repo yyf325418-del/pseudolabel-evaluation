@@ -80,10 +80,13 @@ refinement_checks = {
     "tiny_label_definition": "fewer than 400 voxels" in full_text,
     "score_weights": all(term in full_text for term in ["weight 0.15", "indices (0.35)", "continuity (0.20)", "occupancy (0.20)", "size score (0.10)"]),
     "fold_resampling_rationale": "five fold-specific model estimates" in full_text,
-    "observed_residual_caption": "under the observed D175−D129 foreground-Dice residual background" in full_text,
+    "observed_residual_caption": "under the observed D175–D129 foreground-Dice residual background" in full_text,
     "table5_title_case": all(term in full_text for term in ["Foreground Dice", "Macro-label Dice", "Label-set Jaccard"]),
     "controlled_split_wording": "controlled this source of split variation" in full_text,
     "sagittal_caption": "Representative sagittal CT views" in full_text,
+    "reference8_nlm_abbreviation": "J Imaging Inform Med. 2025;38:2524-2536" in full_text,
+    "foreground_dice_term": "merged-foreground Dice" not in full_text,
+    "contrast_en_dash": all(term in full_text for term in ["D175–D129", "D134–D129"]),
 }
 ```
 
@@ -104,6 +107,10 @@ superseded_phrases = [
     "single reproducible D175−D129",
     "removed this split confounding",
     "Matched qualitative examples from the D175−D129 comparison",
+    "J Digit Imaging Inform Med",
+    "merged-foreground Dice",
+    "D175-D129",
+    "D134-D129",
 ]
 ```
 
@@ -170,9 +177,9 @@ Fold resampling was included because the observed design contained five fold-spe
 Use:
 
 ```text
-Fig. 4(a): CI-exclusion rates under the observed D175−D129 foreground-Dice residual background
+Fig. 4(a): CI-exclusion rates under the observed D175–D129 foreground-Dice residual background
 Discussion: Exact fold matching in D175 controlled this source of split variation.
-Fig. 5: Representative sagittal CT views from matched D175−D129 qualitative examples.
+Fig. 5: Representative sagittal CT views from matched D175–D129 qualitative examples.
 ```
 
 Replace the Table 5 metric formatter with a map:
@@ -183,14 +190,46 @@ endpoint_display = {
     "identification_rate": "Identification Rate",
     "macro_label_dice": "Macro-label Dice",
     "label_set_jaccard": "Label-set Jaccard",
-    "complete_label_set": "Complete-label-set Indicator",
+    "complete_label_set_indicator": "Complete-label-set Indicator",
     "missing_label_count": "Missing-label Count",
     "common_matched_hd95_mm": "Common-matched HD95 (mm)",
     "common_matched_assd_mm": "Common-matched ASSD (mm)",
+    "hd95_penalized_mm": "Penalized HD95 (mm)",
+    "assd_penalized_mm": "Penalized ASSD (mm)",
 }
 ```
 
-- [ ] **Step 6: Rename generated deliverables and update the cover date**
+- [ ] **Step 6: Correct reference [8], endpoint terminology, typography, and display precision**
+
+Use the NLM abbreviation in reference [8]:
+
+```text
+J Imaging Inform Med. 2025;38:2524-2536. doi:10.1007/s10278-024-01282-9.
+```
+
+Replace every manuscript use of `merged-foreground Dice` with `foreground Dice`.
+Use `D175–D129` and `D134–D129` for human-readable model contrasts; retain
+machine-readable underscore keys unchanged. Format negative numeric values with
+the true minus sign `−`.
+
+Add metric-aware display helpers:
+
+```python
+def display_number(value: str | float, digits: int) -> str:
+    return f"{float(value):.{digits}f}".replace("-", "−")
+
+
+def display_effect(metric: str, value: str | float) -> str:
+    digits = 2 if metric.endswith("_mm") else 4
+    return display_number(value, digits)
+```
+
+Use four decimals for Dice/rate/unitless effects, two decimals for distances
+and break-even distances, and `p_text()` for three-decimal p values in the
+Abstract, Results, Tables 3–5, and online resources. Keep source CSV files
+unchanged.
+
+- [ ] **Step 7: Rename generated deliverables and update the cover date**
 
 Generate only:
 
@@ -204,7 +243,7 @@ submission/JIIM_Cover_Letter_20260717.docx
 
 Set the cover-letter date to `July 17, 2026`.
 
-- [ ] **Step 7: Build and run textual validation**
+- [ ] **Step 8: Build and run textual validation**
 
 Run:
 

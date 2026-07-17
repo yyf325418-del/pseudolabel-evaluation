@@ -35,12 +35,15 @@ https://link.springer.com/journal/10278/submission-guidelines
 |---|---|
 | Article type | Hypothesis-driven research |
 | Running title | Provenance audit of pseudo-label filtering |
-| Primary comparison | D175 minus D129 |
+| Primary comparison | D175–D129 |
 | Model identifiers at first use | D129 and D175, internal identifiers |
 | Teacher | supervised teacher checkpoint |
 | Filter threshold | fixed morphology-score threshold of 0.80 |
 | Tiny vertebral label | fewer than 400 voxels |
-| Calibration background | observed D175-minus-D129 foreground-Dice residual background |
+| Calibration background | observed D175–D129 foreground-Dice residual background |
+| Model-contrast typography | D175–D129 (en dash); true minus sign `−` only for negative numbers |
+| Overlap endpoint | Foreground Dice |
+| Display precision | proportions/effects 4 decimals; distances 2 decimals; p values 3 decimals |
 
 ## Manuscript changes
 
@@ -69,6 +72,20 @@ https://link.springer.com/journal/10278/submission-guidelines
     split variation`.
 12. Begin the Fig. 5 caption with `Representative sagittal CT views`.
 13. Preserve the final Conclusion sentence without shortening it.
+14. Correct reference [8] from the hybrid journal abbreviation `J Digit
+    Imaging Inform Med` to the NLM abbreviation `J Imaging Inform Med` while
+    preserving the verified DOI, volume, year, and pages.
+15. Use explicit title-case endpoint labels throughout Table 5, including
+    `Common-matched HD95 (mm)`, `Common-matched ASSD (mm)`, `Penalized HD95
+    (mm)`, and `Penalized ASSD (mm)`.
+16. Reduce manuscript display precision to four decimals for Dice, rates, and
+    other unitless effects; two decimals for distances; and three decimals for
+    p values. Retain full precision in repository CSV files.
+17. Use an en dash for model contrasts (`D175–D129`, `D134–D129`) and a true
+    minus sign only for negative numeric values. Do not alter machine-readable
+    identifiers in CSV files or calibration-background keys.
+18. Replace `merged-foreground Dice` with `foreground Dice` because both terms
+    refer to the same endpoint in this manuscript.
 
 ## Repository changes
 
@@ -88,6 +105,13 @@ running title, Abstract language, teacher wording, fold-resampling rationale,
 400-voxel definition, score weights, Fig. 4 wording, Table 5 display labels,
 bounded Discussion wording, Fig. 5 sagittal-view wording, and D175 internal-ID
 definition. It must prohibit the superseded phrases.
+
+It must also require the corrected NLM abbreviation for reference [8], the
+complete Table 5 endpoint-label map, four-decimal/two-decimal display policy,
+en-dash model contrasts, true-minus negative numbers, and consistent
+`foreground Dice` terminology. It must reject the hybrid journal abbreviation,
+six-decimal manuscript estimates, ASCII-hyphen model contrasts, and
+`merged-foreground Dice`.
 
 Existing checks remain mandatory: 150–250-word abstract, all 19 references
 cited, Figs. 1–5 and Tables 1–5 cited in order, blinded identity isolation,
