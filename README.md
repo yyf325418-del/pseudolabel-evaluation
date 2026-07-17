@@ -64,8 +64,9 @@ calibration, not an equivalence test or a universal power analysis.
   audit history.
 - `figures/current/`: the five current manuscript figures; Fig. 4 uses the
   single reproducible D175-D129 calibration background.
-- `figures/legacy_cmig/` and `docs/legacy_case_level/`: superseded materials
-  retained only for provenance and not used by the current manuscript.
+- The archived legacy-figure directory and `docs/legacy_case_level/` contain
+  superseded materials retained only for provenance and not used by the
+  current manuscript.
 - `scripts/analysis/`: current primary analysis and calibration entry points.
 - `tests/`: numerical and release-integrity checks.
 - `manifest/files_sha256.csv`: generated file sizes and SHA-256 digests.
@@ -85,7 +86,7 @@ masks are redistributed. VerSe and TotalSegmentator must be obtained from their
 official repositories under their original terms. See
 `THIRD_PARTY_DATA_LICENSES.md`.
 
-The manuscript's merged-foreground Dice is not directly comparable with
+The manuscript's foreground Dice is not directly comparable with
 published per-vertebra DSC values.
 
 ## Citation and release

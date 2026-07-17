@@ -61,6 +61,7 @@ class RepositoryReleaseTests(unittest.TestCase):
         self.assertIn("-0.00147066", readme)
         self.assertIn("-0.00554254", readme)
         self.assertNotIn("CMIG_BOOTSTRAP_OUTPUT", readme)
+        self.assertNotIn("CMIG", readme.upper())
         self.assertNotIn("Small Pseudo-Label Gains", readme)
         self.assertNotIn("will be added before", readme)
 
