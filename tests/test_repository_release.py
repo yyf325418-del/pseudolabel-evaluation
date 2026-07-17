@@ -26,6 +26,30 @@ class RepositoryReleaseTests(unittest.TestCase):
             self.assertEqual(verify_package.canonical_payload(lf), verify_package.canonical_payload(crlf))
             self.assertEqual(verify_package.sha256(lf), verify_package.sha256(crlf))
 
+    def test_gitignore_hash_is_line_ending_independent(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            lf = root / "lf" / ".gitignore"
+            crlf = root / "crlf" / ".gitignore"
+            lf.parent.mkdir()
+            crlf.parent.mkdir()
+            lf.write_bytes(b".worktrees/\n")
+            crlf.write_bytes(b".worktrees/\r\n")
+            self.assertEqual(verify_package.canonical_payload(lf), verify_package.canonical_payload(crlf))
+            self.assertEqual(verify_package.sha256(lf), verify_package.sha256(crlf))
+
+    def test_package_files_excludes_linked_worktrees(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            manifest = root / "manifest" / "files_sha256.csv"
+            readme = root / "README.md"
+            nested = root / ".worktrees" / "branch" / "README.md"
+            readme.write_text("current\n", encoding="utf-8")
+            nested.parent.mkdir(parents=True)
+            nested.write_text("linked worktree\n", encoding="utf-8")
+            files = verify_package.package_files(root=root, manifest=manifest)
+            self.assertEqual([path.relative_to(root).as_posix() for path in files], ["README.md"])
+
     def test_required_release_files_exist(self) -> None:
         for relative in ("LICENSE", "LICENSE-CODE", "LICENSE-DATA", "CITATION.cff", ".zenodo.json"):
             self.assertTrue((ROOT / relative).is_file(), f"missing {relative}")

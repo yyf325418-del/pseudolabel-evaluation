@@ -22,7 +22,11 @@ TEXT_SUFFIXES = {".cff", ".csv", ".json", ".md", ".py", ".txt", ".yaml", ".yml"}
 def canonical_payload(path: Path) -> bytes:
     """Return platform-stable bytes for manifests while preserving binaries."""
     payload = path.read_bytes()
-    is_text = path.suffix.lower() in TEXT_SUFFIXES or path.name.startswith("LICENSE")
+    is_text = (
+        path.suffix.lower() in TEXT_SUFFIXES
+        or path.name.startswith("LICENSE")
+        or path.name == ".gitignore"
+    )
     return payload.replace(b"\r\n", b"\n") if is_text else payload
 
 
@@ -32,14 +36,15 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def package_files() -> list[Path]:
+def package_files(root: Path = ROOT, manifest: Path = MANIFEST) -> list[Path]:
     return sorted(
         path
-        for path in ROOT.rglob("*")
+        for path in root.rglob("*")
         if path.is_file()
-        and path != MANIFEST
-        and ".git" not in path.relative_to(ROOT).parts
-        and "__pycache__" not in path.relative_to(ROOT).parts
+        and path != manifest
+        and ".git" not in path.relative_to(root).parts
+        and ".worktrees" not in path.relative_to(root).parts
+        and "__pycache__" not in path.relative_to(root).parts
     )
 
 
