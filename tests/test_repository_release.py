@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import unittest
 from pathlib import Path
 import sys
@@ -64,6 +65,39 @@ class RepositoryReleaseTests(unittest.TestCase):
         self.assertNotIn("CMIG", readme.upper())
         self.assertNotIn("Small Pseudo-Label Gains", readme)
         self.assertNotIn("will be added before", readme)
+
+    def test_checkpoint_manifest_and_current_penalty_are_submission_canonical(self) -> None:
+        provenance_path = ROOT / "data" / "provenance" / "checkpoint_provenance_manifest.csv"
+        penalty_path = ROOT / "data" / "external42" / "external42_penalty_sensitivity.csv"
+        primary_path = ROOT / "data" / "external42" / "external42_mean_estimand_statistics.csv"
+        with provenance_path.open(encoding="utf-8-sig", newline="") as handle:
+            provenance = list(csv.DictReader(handle))
+        with penalty_path.open(encoding="utf-8-sig", newline="") as handle:
+            penalties = list(csv.DictReader(handle))
+        with primary_path.open(encoding="utf-8-sig", newline="") as handle:
+            primary = list(csv.DictReader(handle))
+        current = next(
+            row for row in penalties
+            if row["variant"] == "primary"
+            and row["penalty_scheme"] == "diagonal_1p00_current"
+            and row["metric"] == "hd95_penalized_mm"
+        )
+        primary_hd95 = next(
+            row for row in primary
+            if row["cohort"] == "external42_primary"
+            and row["metric"] == "hd95_penalized_mm"
+        )
+        self.assertEqual(len(provenance), 27)
+        for penalty_key, primary_key in (
+            ("mean_difference", "mean_difference"),
+            ("bootstrap_ci_low", "bootstrap_ci_low"),
+            ("bootstrap_ci_high", "bootstrap_ci_high"),
+            ("paired_sign_flip_permutation_p", "permutation_p"),
+        ):
+            self.assertEqual(current[penalty_key], primary_hd95[primary_key])
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("complete 27-row checkpoint manifest", readme)
+        self.assertIn("0.9925290074709925", readme)
 
     def test_release_validator_finds_no_failures(self) -> None:
         self.assertEqual(verify_package.validate_release(), [])

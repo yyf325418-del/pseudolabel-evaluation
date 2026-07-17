@@ -71,6 +71,14 @@ calibration, not an equivalence test or a universal power analysis.
 - `tests/`: numerical and release-integrity checks.
 - `manifest/files_sha256.csv`: generated file sizes and SHA-256 digests.
 
+The provenance directory contains the complete 27-row checkpoint manifest used
+by the manuscript and Online Resource 1. For the current primary-ROI
+penalized-HD95 analysis at the 1.0x ROI-diagonal missing-label penalty, the
+canonical paired sign-flip permutation result is `0.9925290074709925`
+(`p=0.993` in the manuscript and supplementary display). The current-penalty
+sensitivity row reuses the primary mean-estimand inference so that its mean,
+interval, and permutation result do not drift across outputs.
+
 ## Verify repository integrity
 
 ```text
